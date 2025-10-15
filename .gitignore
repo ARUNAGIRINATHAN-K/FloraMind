@@ -1,0 +1,60 @@
+# ==============================
+# 🌸 FloraMind Project .gitignore
+# ==============================
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Logs and debug files
+*.log
+error_log
+debug.log
+
+# Environment and credentials
+.env
+.env.*
+config.php
+database.php
+
+# Composer dependencies
+/vendor/
+
+# Node dependencies (if using npm for Bootstrap/JS)
+node_modules/
+
+# PHP cache or session files
+*.cache
+*.session
+*.tmp
+
+# Uploads or datasets
+uploads/
+data/*.csv
+*.csv
+
+# Backup or temp files
+*.bak
+*.swp
+*.old
+*.tmp
+
+# Generated files
+/public/build/
+dist/
+.cache/
+coverage/
+
+# OS trash folders
+$RECYCLE.BIN/
+.Trashes/
+
+# ==============================
+# End of .gitignore
+# ==============================
