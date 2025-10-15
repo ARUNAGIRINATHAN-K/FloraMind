@@ -1,0 +1,2 @@
+# FloraMind
+Flower Classifier
