@@ -1,51 +1,50 @@
-# FloraMind Documentation
-
 <div align="center">
+
+# FloraMind 
+
+*An intelligent flower classification system powered by machine learning*
 
 ![FloraMind Logo](https://img.shields.io/badge/🌸_FloraMind-Intelligent_Classifier-ff69b4?style=for-the-badge)
 
 [![PHP Version](https://img.shields.io/badge/PHP-8.0+-777BB4?style=flat-square&logo=php&logoColor=white)](https://www.php.net/)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0+-4479A1?style=flat-square&logo=mysql&logoColor=white)](https://www.mysql.com/)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5.0-7952B3?style=flat-square&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/badge/License-Apache-yellow.svg?style=flat-square)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Active-success?style=flat-square)](https://github.com/yourusername/floramind)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
+*FloraMind is a full-stack web application that demonstrates the practical application of machine learning in botanical classification. By leveraging the classic Iris dataset and K-Nearest Neighbors algorithm, it predicts flower species based on user-provided measurements through an intuitive web interface.*
 </div>
 
-> 🌺 An intelligent flower classification system powered by machine learning
 
-## What is FloraMind?
-
-FloraMind is a full-stack web application that demonstrates the practical application of machine learning in botanical classification. By leveraging the classic Iris dataset and K-Nearest Neighbors algorithm, it predicts flower species based on user-provided measurements through an intuitive web interface.
 
 ## Features
 
-### 🌼 Interactive User Interface
+### Interactive User Interface
 - Clean, responsive Bootstrap 5-based design
 - Real-time input validation
 - Live measurement preview
 - Mobile-friendly interface
 
-### 🤖 Machine Learning Classification
+### Machine Learning Classification
 - K-Nearest Neighbors (KNN) algorithm implementation
 - Trained on the classic Iris dataset
 - Predicts three species: Iris Setosa, Iris Versicolor, Iris Virginica
 - High accuracy classification
 
-### 🎨 Dynamic Results Display
+### Dynamic Results Display
 - Color-coded species predictions
 - Icon-based visual feedback
 - Detailed classification confidence scores
 - Responsive result cards
 
-### 💾 Data Persistence
+### Data Persistence
 - MySQL database integration
 - Automatic prediction logging
 - Timestamp tracking
 - Historical data storage
 
-### 📊 Analytics Capabilities
+### Analytics Capabilities
 - Prediction history tracking
 - Usage statistics
 - Model performance insights
@@ -73,7 +72,7 @@ FloraMind is a full-stack web application that demonstrates the practical applic
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/floramind.git
+git clone https://github.com/ARUNAGIRINATHAN-K/floramind.git
 cd floramind
 ```
 
@@ -292,23 +291,12 @@ We welcome contributions! Please follow these steps:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- Iris Dataset: Ronald Fisher (1936)
-- PHP-ML Library: Arkadiusz Kondas
-- Bootstrap Team
-- Open source community
-
 ## Support
 
 For questions and support:
 - 📧 Email: support@floramind.dev
 - 💬 Discord: [Join our community](#)
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/floramind/issues)
+- 🐛 Issues: [GitHub Issues](https://github.com/ARUNAGIRINATHAN-K/floramind/issues)
 
 ## Roadmap
 
