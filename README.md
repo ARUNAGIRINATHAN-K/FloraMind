@@ -13,10 +13,11 @@
 [![Status](https://img.shields.io/badge/Status-Active-success?style=flat-square)](https://github.com/yourusername/floramind)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
-*FloraMind is a full-stack web application that demonstrates the practical application of machine learning in botanical classification. By leveraging the classic Iris dataset and K-Nearest Neighbors algorithm, it predicts flower species based on user-provided measurements through an intuitive web interface.*
+*FloraMind is a full-stack web app that uses machine learning to classify flowers from user measurements. Powered by the Iris dataset and K-Nearest Neighbors, it predicts species through an intuitive interface.*
 </div>
 
-
+----
+<br>
 
 ## Features
 
