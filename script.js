@@ -29,9 +29,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 body: formData
             });
-            const data = await response.json();
+            // Robustly parse JSON and handle non-JSON errors
+            const contentType = response.headers.get('content-type') || '';
+            let data;
+            if (contentType.includes('application/json')) {
+                data = await response.json();
+            } else {
+                const text = await response.text();
+                throw new Error(`Unexpected response. Status ${response.status}. Body: ${text?.slice(0, 200)}`);
+            }
 
-            if (data.success) {
+            if (response.ok && data && data.success) {
                 const species = data.prediction;
                 const iconClass = species.toLowerCase();
                 predictionOutput.innerHTML = `
@@ -41,7 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 resultDiv.classList.remove('d-none');
                 loadPastPredictions();
             } else {
-                alert('Error: ' + data.error);
+                const errMsg = (data && data.error) ? data.error : 'Unknown error';
+                alert('Error: ' + errMsg);
             }
         } catch (error) {
             alert('Failed to predict: ' + error.message);
@@ -52,6 +61,15 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadPastPredictions() {
         try {
             const response = await fetch('predict.php?action=get_past');
+            const contentType = response.headers.get('content-type') || '';
+            if (!response.ok) {
+                const text = await response.text();
+                throw new Error(`Failed to load history (${response.status}): ${text?.slice(0, 200)}`);
+            }
+            if (!contentType.includes('application/json')) {
+                const text = await response.text();
+                throw new Error(`Unexpected response for history. Body: ${text?.slice(0, 200)}`);
+            }
             const data = await response.json();
             pastPredictions.innerHTML = '';
             data.forEach(row => {
