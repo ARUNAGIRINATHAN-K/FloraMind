@@ -71,6 +71,8 @@
 
 ### Installation
 
+#### Standard Setup (Linux/Mac)
+
 1. Clone the repository
 ```bash
 git clone https://github.com/ARUNAGIRINATHAN-K/floramind.git
@@ -87,13 +89,13 @@ composer install
 mysql -u root -p < database/schema.sql
 ```
 
-4. Update configuration
+4. Update configuration (if needed)
 ```php
-// config/database.php
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'floramind');
-define('DB_USER', 'your_username');
-define('DB_PASS', 'your_password');
+// In predict.php, update these variables:
+$host = 'localhost';
+$db = 'floramind';
+$user = 'root';
+$pass = ''; // Update with your MySQL password
 ```
 
 5. Start the application
@@ -102,6 +104,71 @@ php -S localhost:8000
 ```
 
 Visit `http://localhost:8000` in your browser.
+
+#### Windows/XAMPP Setup
+
+1. **Clone the repository**
+```powershell
+cd C:\xampp\htdocs
+git clone https://github.com/ARUNAGIRINATHAN-K/floramind.git
+cd floramind
+```
+
+2. **Install PHP dependencies**
+   
+   If you don't have Composer globally installed:
+```powershell
+# Download Composer installer
+Invoke-WebRequest -Uri https://getcomposer.org/installer -OutFile composer-setup.php
+
+# Install Composer locally
+C:\xampp\php\php.exe composer-setup.php --install-dir=. --filename=composer.phar
+
+# Install dependencies
+C:\xampp\php\php.exe composer.phar require php-ai/php-ml
+```
+
+   Or if you have Composer globally:
+```powershell
+composer require php-ai/php-ml
+```
+
+3. **Start XAMPP services**
+   - Open XAMPP Control Panel
+   - Start **Apache** and **MySQL** modules
+
+4. **Create database**
+   - Open phpMyAdmin at `http://localhost/phpmyadmin`
+   - Go to SQL tab and run the contents of `database/schema.sql`
+   
+   Or via command line:
+```powershell
+# Navigate to MySQL bin directory
+cd C:\xampp\mysql\bin
+
+# Run schema
+.\mysql.exe -u root < C:\xampp\htdocs\floramind\database\schema.sql
+```
+
+5. **Update database credentials (if needed)**
+   
+   Open `predict.php` and verify these settings match your XAMPP MySQL:
+```php
+$host = 'localhost';
+$db = 'floramind';
+$user = 'root';
+$pass = ''; // Default XAMPP MySQL has no password
+```
+
+6. **Access the application**
+   
+   Visit `http://localhost/floramind` in your browser.
+
+7. **Test the prediction**
+   - Enter sample measurements (e.g., 5.1, 3.5, 1.4, 0.2)
+   - Click "Predict Flower Type"
+   - You should see "Iris-setosa" predicted
+   - Past predictions will appear in the table below
 
 ## Usage Guide
 
@@ -143,24 +210,17 @@ Visit `http://localhost:8000` in your browser.
 
 ```
 floramind/
-├── index.php              # Main application entry
-├── assets/
-│   ├── css/
-│   │   └── styles.css     # Custom styles
-│   ├── js/
-│   │   └── app.js         # Frontend logic
-│   └── images/            # Icons and visuals
-├── src/
-│   ├── Classifier.php     # KNN implementation
-│   ├── Database.php       # DB connection
-│   └── Logger.php         # Prediction logging
-├── data/
-│   └── iris.csv           # Training dataset
-├── config/
-│   └── database.php       # DB configuration
+├── index.php              # Main application entry (HTML UI)
+├── predict.php            # Backend API for predictions
+├── script.js              # Frontend logic & AJAX
+├── style.css              # Custom styles
+├── iris.csv               # Training dataset (150 samples)
 ├── database/
 │   └── schema.sql         # Database schema
-└── docs/                  # Documentation
+├── vendor/                # Composer dependencies
+│   └── php-ai/php-ml/     # PHP Machine Learning library
+├── composer.json          # Dependency manifest
+└── composer.phar          # Local Composer (if installed locally)
 ```
 
 ## How It Works
@@ -263,17 +323,43 @@ Retrieves prediction statistics.
 
 ### Common Issues
 
+**Issue: "Unexpected end of JSON input" error**
+```
+Cause: Missing dependencies or database connection error returning non-JSON response
+Solution (Windows/XAMPP):
+1. Install dependencies: C:\xampp\php\php.exe composer.phar require php-ai/php-ml
+2. Verify vendor/autoload.php exists
+3. Check browser DevTools Network tab for actual response
+```
+
 **Issue: "Class not found" error**
 ```bash
 # Solution: Install PHP-ML
 composer require php-ai/php-ml
+# Or on Windows XAMPP:
+C:\xampp\php\php.exe composer.phar require php-ai/php-ml
 ```
 
 **Issue: Database connection failed**
 ```php
-// Check credentials in config/database.php
-// Verify MySQL service is running
+// Solution 1: Check credentials in predict.php
+$host = 'localhost';
+$db = 'floramind';
+$user = 'root';
+$pass = ''; // XAMPP default has no password
+
+// Solution 2: Verify MySQL service is running
+# Linux/Mac:
 sudo systemctl status mysql
+# Windows XAMPP:
+Open XAMPP Control Panel and start MySQL module
+```
+
+**Issue: "iris.csv not found"**
+```
+Cause: File path resolution issue
+Solution: Ensure iris.csv is in the same directory as predict.php
+The updated predict.php uses absolute paths to avoid this issue
 ```
 
 **Issue: Prediction accuracy is low**
