@@ -1,0 +1,22 @@
+/* style.css */
+.preview {
+    font-size: 0.9em;
+    color: #6c757d;
+}
+
+.result-icon {
+    font-size: 3em;
+    margin-bottom: 1em;
+}
+
+.setosa {
+    color: #28a745; /* Green for Setosa */
+}
+
+.versicolor {
+    color: #17a2b8; /* Blue for Versicolor */
+}
+
+.virginica {
+    color: #ffc107; /* Yellow for Virginica */
+}
