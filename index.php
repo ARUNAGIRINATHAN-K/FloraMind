@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FloraMind - Iris Flower Classifier</title>
+    <title>FloraMind</title>
+    <link rel="icon" type="image/x-icon" href="img/fav.jpg">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -11,8 +12,8 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center mb-4">FloraMind: Iris Flower Classifier</h1>
-        <p class="text-center lead">Enter flower measurements to predict the Iris species using K-Nearest Neighbors (KNN) machine learning. This app demonstrates basic ML in PHP with data persistence in MySQL.</p>
+        <h1 class="text-center mb-4">FloraMind</h1>
+        <p class="text-center lead">Iris Flower Classifier</p>
 
         <!-- Input Form -->
         <form id="predictionForm" class="card p-4 mb-4">
@@ -73,5 +74,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script src="script.js"></script>
-</body>
-</html>
+
+
+    <footer>
+        <div class="footer">
+            <p>FloraMind © 2025</p>
+            <p>Developed by ARUNAGIRINATHAN • AI • Full Stack Developer</p>
+        </div>
+    </footer>
+    </body>
+    </html>
