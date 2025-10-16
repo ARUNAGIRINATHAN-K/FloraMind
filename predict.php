@@ -1,10 +1,24 @@
 <?php
 // predict.php
 header('Content-Type: application/json'); // Ensure JSON response
-ini_set('display_errors', 0); // Disable HTML error output
+// Prevent HTML error output corrupting JSON
+ini_set('display_errors', '0');
 error_reporting(E_ALL);
 
-require 'vendor/autoload.php'; // Composer autoloader
+// Resolve base path
+$baseDir = __DIR__;
+
+// Ensure dependencies are installed (avoid fatal error on missing autoload)
+$autoloadPath = $baseDir . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+if (!file_exists($autoloadPath)) {
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'error' => 'Server is missing dependencies. Please run "composer require php-ai/php-ml" and ensure vendor/autoload.php exists.'
+    ]);
+    exit;
+}
+require_once $autoloadPath; // Composer autoloader
 
 use Phpml\Classification\KNearestNeighbors;
 use Phpml\Dataset\CsvDataset;
@@ -16,8 +30,9 @@ $user = 'root'; // Update as needed
 $pass = ''; // Update as needed
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     echo json_encode(['success' => false, 'error' => 'Database connection failed: ' . $e->getMessage()]);
     exit;
@@ -49,10 +64,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Load Iris dataset
-        if (!file_exists('iris.csv')) {
+        $irisPath = $baseDir . DIRECTORY_SEPARATOR . 'iris.csv';
+        if (!file_exists($irisPath)) {
             throw new Exception('Iris dataset (iris.csv) not found');
         }
-        $dataset = new CsvDataset('iris.csv', 4, true);
+        $dataset = new CsvDataset($irisPath, 4, true);
         $samples = $dataset->getSamples();
         $targets = $dataset->getTargets();
 
@@ -69,6 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         echo json_encode(['success' => true, 'prediction' => $prediction]);
     } catch (Exception $e) {
+        http_response_code(400);
         echo json_encode(['success' => false, 'error' => 'Prediction failed: ' . $e->getMessage()]);
     }
     exit;
