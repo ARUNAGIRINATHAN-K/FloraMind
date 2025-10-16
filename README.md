@@ -61,116 +61,7 @@
 | **ML Algorithm** | K-Nearest Neighbors (KNN) |
 | **Dataset** | Iris Dataset (CSV) |
 
-## Quick Start
-
-### Prerequisites
-- PHP 8.0 or higher
-- MySQL 8.0 or higher
-- Composer (for PHP-ML installation)
-- Web server (Apache/Nginx)
-
-### Installation
-
-#### Standard Setup (Linux/Mac)
-
-1. Clone the repository
-```bash
-git clone https://github.com/ARUNAGIRINATHAN-K/floramind.git
-cd floramind
-```
-
-2. Install dependencies
-```bash
-composer install
-```
-
-3. Configure database
-```bash
-mysql -u root -p < database/schema.sql
-```
-
-4. Update configuration (if needed)
-```php
-// In predict.php, update these variables:
-$host = 'localhost';
-$db = 'floramind';
-$user = 'root';
-$pass = ''; // Update with your MySQL password
-```
-
-5. Start the application
-```bash
-php -S localhost:8000
-```
-
-Visit `http://localhost:8000` in your browser.
-
-#### Windows/XAMPP Setup
-
-1. **Clone the repository**
-```powershell
-cd C:\xampp\htdocs
-git clone https://github.com/ARUNAGIRINATHAN-K/floramind.git
-cd floramind
-```
-
-2. **Install PHP dependencies**
-   
-   If you don't have Composer globally installed:
-```powershell
-# Download Composer installer
-Invoke-WebRequest -Uri https://getcomposer.org/installer -OutFile composer-setup.php
-
-# Install Composer locally
-C:\xampp\php\php.exe composer-setup.php --install-dir=. --filename=composer.phar
-
-# Install dependencies
-C:\xampp\php\php.exe composer.phar require php-ai/php-ml
-```
-
-   Or if you have Composer globally:
-```powershell
-composer require php-ai/php-ml
-```
-
-3. **Start XAMPP services**
-   - Open XAMPP Control Panel
-   - Start **Apache** and **MySQL** modules
-
-4. **Create database**
-   - Open phpMyAdmin at `http://localhost/phpmyadmin`
-   - Go to SQL tab and run the contents of `database/schema.sql`
-   
-   Or via command line:
-```powershell
-# Navigate to MySQL bin directory
-cd C:\xampp\mysql\bin
-
-# Run schema
-.\mysql.exe -u root < C:\xampp\htdocs\floramind\database\schema.sql
-```
-
-5. **Update database credentials (if needed)**
-   
-   Open `predict.php` and verify these settings match your XAMPP MySQL:
-```php
-$host = 'localhost';
-$db = 'floramind';
-$user = 'root';
-$pass = ''; // Default XAMPP MySQL has no password
-```
-
-6. **Access the application**
-   
-   Visit `http://localhost/floramind` in your browser.
-
-7. **Test the prediction**
-   - Enter sample measurements (e.g., 5.1, 3.5, 1.4, 0.2)
-   - Click "Predict Flower Type"
-   - You should see "Iris-setosa" predicted
-   - Past predictions will appear in the table below
-
-## Usage Guide
+## User Guide
 
 ### Making a Prediction
 
@@ -251,47 +142,6 @@ petal_length, petal_width, predicted_species, timestamp)
 VALUES (?, ?, ?, ?, ?, NOW());
 ```
 
-## API Reference
-
-### POST /classify
-Classifies a flower based on measurements.
-
-**Request Body:**
-```json
-{
-  "sepal_length": 5.1,
-  "sepal_width": 3.5,
-  "petal_length": 1.4,
-  "petal_width": 0.2
-}
-```
-
-**Response:**
-```json
-{
-  "success": true,
-  "species": "Iris Setosa",
-  "confidence": 0.95,
-  "timestamp": "2025-10-15 12:30:45"
-}
-```
-
-### GET /analytics
-Retrieves prediction statistics.
-
-**Response:**
-```json
-{
-  "total_predictions": 1250,
-  "species_distribution": {
-    "Iris Setosa": 420,
-    "Iris Versicolor": 415,
-    "Iris Virginica": 415
-  },
-  "accuracy": 0.96
-}
-```
-
 ## Educational Value
 
 ### Learning Objectives
@@ -319,55 +169,6 @@ Retrieves prediction statistics.
 6. **API Rate Limiting**: Implement request throttling
 7. **Caching Layer**: Use Redis for faster predictions
 
-## Troubleshooting
-
-### Common Issues
-
-**Issue: "Unexpected end of JSON input" error**
-```
-Cause: Missing dependencies or database connection error returning non-JSON response
-Solution (Windows/XAMPP):
-1. Install dependencies: C:\xampp\php\php.exe composer.phar require php-ai/php-ml
-2. Verify vendor/autoload.php exists
-3. Check browser DevTools Network tab for actual response
-```
-
-**Issue: "Class not found" error**
-```bash
-# Solution: Install PHP-ML
-composer require php-ai/php-ml
-# Or on Windows XAMPP:
-C:\xampp\php\php.exe composer.phar require php-ai/php-ml
-```
-
-**Issue: Database connection failed**
-```php
-// Solution 1: Check credentials in predict.php
-$host = 'localhost';
-$db = 'floramind';
-$user = 'root';
-$pass = ''; // XAMPP default has no password
-
-// Solution 2: Verify MySQL service is running
-# Linux/Mac:
-sudo systemctl status mysql
-# Windows XAMPP:
-Open XAMPP Control Panel and start MySQL module
-```
-
-**Issue: "iris.csv not found"**
-```
-Cause: File path resolution issue
-Solution: Ensure iris.csv is in the same directory as predict.php
-The updated predict.php uses absolute paths to avoid this issue
-```
-
-**Issue: Prediction accuracy is low**
-```php
-// Increase K value in KNN
-$classifier = new KNearestNeighbors($k = 5);
-```
-
 ## Contributing
 
 We welcome contributions! Please follow these steps:
@@ -381,8 +182,8 @@ We welcome contributions! Please follow these steps:
 ## Support
 
 For questions and support:
-- 📧 Email: support@floramind.dev
-- 💬 Discord: [Join our community](#)
+<!---- 📧 Email: support@floramind.dev
+- 💬 Discord: [Join our community](#)--->
 - 🐛 Issues: [GitHub Issues](https://github.com/ARUNAGIRINATHAN-K/floramind/issues)
 
 ## Roadmap
