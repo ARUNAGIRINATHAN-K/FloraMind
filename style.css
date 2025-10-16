@@ -1,4 +1,22 @@
 /* style.css */
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color:whitesmoke;
+    color: BLACK;
+    text-align: center;
+    padding: 10px 0;
+    box-shadow: 0 -2px 6px rgba(0,0,0,0.05);
+    z-index: 1030; 
+}
+
+body {
+        margin: 0;
+        padding-bottom: 80px; 
+}
+
 .preview {
     font-size: 0.9em;
     color: #6c757d;
