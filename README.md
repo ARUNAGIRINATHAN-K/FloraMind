@@ -1,6 +1,8 @@
 <div align="center">
 
-# FloraMind 
+<img src="FloraMind.png" alt="CipherSingularity Logo" width="500"/>
+<BR>
+<!--# FloraMind -->
 
 *An intelligent flower classification system powered by machine learning*
 
